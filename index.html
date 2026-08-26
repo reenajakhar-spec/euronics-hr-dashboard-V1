@@ -1,285 +1,658 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Euronics HR Command Centre</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-<link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Euronics HR Command Centre</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
 
-<div class="header">
-  <div class="header-left">
-    <div class="logo-badge">EURONICS</div>
-    <div class="header-title">
-      <h1>HR Command Centre</h1>
-      <p>Elevating Hygiene Everyday · CEO &amp; CHRO View</p>
-    </div>
-  </div>
-  <div class="header-right" id="clockLine">July 2026</div>
-</div>
+<div class="app-shell">
 
-<div class="sample-banner">⚠ All figures on this dashboard are illustrative placeholder (dummy) data — replace with live KEKA / HRMS feeds before circulating.</div>
+  <!-- SIDEBAR -->
 
-<div class="tab-nav">
-  <button class="tab-btn active" id="tabbtn-overview" onclick="showTab('overview')">Overview</button>
-  <button class="tab-btn" id="tabbtn-headcount" onclick="showTab('headcount')">Headcount & Org</button>
-  <button class="tab-btn" id="tabbtn-recruitment" onclick="showTab('recruitment')">Recruitment & TA</button>
-  <button class="tab-btn" id="tabbtn-attendance" onclick="showTab('attendance')">Attendance & Leave</button>
-  <button class="tab-btn" id="tabbtn-performance" onclick="showTab('performance')">Performance</button>
-  <button class="tab-btn" id="tabbtn-payroll" onclick="showTab('payroll')">Payroll & Comp</button>
-  <button class="tab-btn" id="tabbtn-compliance" onclick="showTab('compliance')">Compliance & Statutory</button>
-  <button class="tab-btn" id="tabbtn-lnd" onclick="showTab('lnd')">L&amp;D / EuroVersity</button>
-  <button class="tab-btn" id="tabbtn-engagement" onclick="showTab('engagement')">Engagement & Culture</button>
-  <button class="tab-btn" id="tabbtn-alerts" onclick="showTab('alerts')">Alerts & Actions</button>
-</div>
+  <aside class="sidebar">
 
-<!-- ============ OVERVIEW ============ -->
-<div id="tab-overview" class="tab-content active">
-  <div class="section-header">
-    <div class="section-title">Executive <span>Overview</span></div>
-    <div class="section-sub">Headline people metrics across Euronics — as of 28 July 2026</div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card clickable" onclick="openModal('headcount')"><span class="kpi-hint">🔍</span><div class="kpi-label">Total Headcount</div><div class="kpi-value">612</div><div class="kpi-sub good">▲ +6 vs June</div></div>
-    <div class="kpi-card clickable" onclick="openModal('attendanceRate')"><span class="kpi-hint">🔍</span><div class="kpi-label">Attendance Rate</div><div class="kpi-value">93.1<span>%</span></div><div class="kpi-sub">Jul MTD avg</div></div>
-    <div class="kpi-card amber"><div class="kpi-label">Open Positions</div><div class="kpi-value">18</div><div class="kpi-sub bad">3 aged &gt;8 weeks</div></div>
-    <div class="kpi-card"><div class="kpi-label">Attrition (Rolling 12M)</div><div class="kpi-value">14.2<span>%</span></div><div class="kpi-sub">Sales 18.4% · Non-Sales 9.7%</div></div>
-    <div class="kpi-card violet"><div class="kpi-label">eNPS Score</div><div class="kpi-value">+32</div><div class="kpi-sub good">▲ +4 vs last survey</div></div>
-  </div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">Function-wise Snapshot</div></div>
-    <table class="data-table">
-      <thead><tr><th>Function</th><th class="num">Headcount</th><th class="num">Open Roles</th><th class="num">Attendance %</th><th class="num">Attrition %</th></tr></thead>
-      <tbody>
-        <tr><td>Production (Plant)</td><td class="num">248</td><td class="num">6</td><td class="num">89.1%</td><td class="num">16.8%</td></tr>
-        <tr><td>Sales &amp; BD</td><td class="num">146</td><td class="num">5</td><td class="num">96.2%</td><td class="num">21.3%</td></tr>
-        <tr><td>Quality</td><td class="num">38</td><td class="num">1</td><td class="num">94.8%</td><td class="num">7.1%</td></tr>
-        <tr><td>Supply Chain</td><td class="num">42</td><td class="num">2</td><td class="num">95.5%</td><td class="num">9.4%</td></tr>
-        <tr><td>Engineering / NPD</td><td class="num">31</td><td class="num">1</td><td class="num">97.1%</td><td class="num">4.2%</td></tr>
-        <tr><td>Finance</td><td class="num">22</td><td class="num">0</td><td class="num">96.4%</td><td class="num">3.8%</td></tr>
-        <tr><td>HR &amp; Admin</td><td class="num">19</td><td class="num">1</td><td class="num">95.0%</td><td class="num">5.5%</td></tr>
-        <tr><td>IT</td><td class="num">14</td><td class="num">1</td><td class="num">96.8%</td><td class="num">6.0%</td></tr>
-        <tr><td>Others / Corporate</td><td class="num">52</td><td class="num">1</td><td class="num">94.2%</td><td class="num">8.9%</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+    <div class="brand">
+      <div class="brand-mark">E</div>
 
-<!-- ============ HEADCOUNT & ORG ============ -->
-<div id="tab-headcount" class="tab-content">
-  <div class="section-header">
-    <div class="section-title">Headcount &amp; <span>Org Structure</span></div>
-    <div class="section-sub">Movement, cost, and org distribution</div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card clickable" onclick="openModal('headcount')"><span class="kpi-hint">🔍</span><div class="kpi-label">Total Headcount</div><div class="kpi-value">612</div><div class="kpi-sub good">▲ +6 vs June</div></div>
-    <div class="kpi-card green"><div class="kpi-label">New Joiners (MTD)</div><div class="kpi-value">9</div><div class="kpi-sub">4 Sales · 3 Plant · 2 Corp</div></div>
-    <div class="kpi-card red"><div class="kpi-label">Exits (MTD)</div><div class="kpi-value">6</div><div class="kpi-sub">3 Sales · 2 Plant · 1 Corp</div></div>
-    <div class="kpi-card"><div class="kpi-label">Net Change (MTD)</div><div class="kpi-value">+3</div><div class="kpi-sub">Headcount growing steadily</div></div>
-    <div class="kpi-card violet"><div class="kpi-label">Avg Tenure</div><div class="kpi-value">3.4<span>yrs</span></div><div class="kpi-sub">Plant 4.1 yrs · Sales 2.6 yrs</div></div>
-  </div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">Cost &amp; Headcount by Department (Excl. Directors)</div></div>
-    <table class="data-table">
-      <thead><tr><th>Department</th><th class="num">Headcount</th><th class="num">Cost (Monthly ₹L)</th><th class="num">% of Cost</th></tr></thead>
-      <tbody>
-        <tr><td>Production (Plant)</td><td class="num">248</td><td class="num">₹58.2L</td><td class="num">32%</td></tr>
-        <tr><td>Sales &amp; BD</td><td class="num">146</td><td class="num">₹64.5L</td><td class="num">35%</td></tr>
-        <tr><td>Quality</td><td class="num">38</td><td class="num">₹9.8L</td><td class="num">5%</td></tr>
-        <tr><td>Supply Chain</td><td class="num">42</td><td class="num">₹10.6L</td><td class="num">6%</td></tr>
-        <tr><td>Engineering / NPD</td><td class="num">31</td><td class="num">₹9.1L</td><td class="num">5%</td></tr>
-        <tr><td>Finance</td><td class="num">22</td><td class="num">₹7.4L</td><td class="num">4%</td></tr>
-        <tr><td>HR &amp; Admin</td><td class="num">19</td><td class="num">₹6.0L</td><td class="num">3%</td></tr>
-        <tr><td>IT</td><td class="num">14</td><td class="num">₹5.2L</td><td class="num">3%</td></tr>
-        <tr><td>Others / Corporate</td><td class="num">52</td><td class="num">₹13.2L</td><td class="num">7%</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ============ RECRUITMENT & TA ============ -->
-<div id="tab-recruitment" class="tab-content">
-  <div class="section-header">
-    <div class="section-title">Recruitment &amp; <span>Talent Acquisition</span></div>
-    <div class="section-sub">Pipeline health and open-role ageing</div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card amber"><div class="kpi-label">Open Positions</div><div class="kpi-value">18</div><div class="kpi-sub bad">3 aged &gt;8 weeks</div></div>
-    <div class="kpi-card"><div class="kpi-label">Avg Time-to-Hire</div><div class="kpi-value">34<span>days</span></div><div class="kpi-sub good">▼ 4 days vs Q1</div></div>
-    <div class="kpi-card green"><div class="kpi-label">Offer Accept Rate</div><div class="kpi-value">81<span>%</span></div><div class="kpi-sub">Q2 rolling avg</div></div>
-    <div class="kpi-card violet"><div class="kpi-label">Requisitions Raised (MTD)</div><div class="kpi-value">12</div><div class="kpi-sub">7 Sales · 3 Plant · 2 Corp</div></div>
-  </div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">Open Positions — Ageing</div></div>
-    <table class="data-table">
-      <thead><tr><th>Role</th><th>Department</th><th>Recruiter</th><th class="num">Days Open</th><th>Status</th></tr></thead>
-      <tbody>
-        <tr><td>Healthcare Business Head</td><td>Sales</td><td>Suman</td><td class="num">81</td><td><span class="badge badge-red">Critical</span></td></tr>
-        <tr><td>BDM — West</td><td>Sales</td><td>Naman Dua</td><td class="num">58</td><td><span class="badge badge-red">Critical</span></td></tr>
-        <tr><td>QC Engineer</td><td>Quality</td><td>Rishita</td><td class="num">44</td><td><span class="badge badge-amber">Ageing</span></td></tr>
-        <tr><td>PCB Design Engineer</td><td>Engineering/NPD</td><td>Nainika</td><td class="num">29</td><td><span class="badge badge-amber">Ageing</span></td></tr>
-        <tr><td>HR Executive — Plant</td><td>HR</td><td>Snigdha</td><td class="num">17</td><td><span class="badge badge-green">On Track</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ============ ATTENDANCE & LEAVE ============ -->
-<div id="tab-attendance" class="tab-content">
-  <div class="section-header">
-    <div class="section-title">Attendance &amp; <span>Leave Management</span></div>
-    <div class="section-sub">Biometric / manual tracking · absenteeism · leave balances · regularisation</div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card green clickable" onclick="openModal('attendanceRate')"><span class="kpi-hint">🔍</span><div class="kpi-label">Overall Attendance</div><div class="kpi-value">93.4<span>%</span></div><div class="kpi-sub">Jul MTD avg</div></div>
-    <div class="kpi-card red"><div class="kpi-label">Absenteeism — Plant</div><div class="kpi-value">11.2<span>%</span></div><div class="kpi-sub">Mon/Fri pattern observed</div></div>
-    <div class="kpi-card amber"><div class="kpi-label">Pending Leave Approvals</div><div class="kpi-value">18</div><div class="kpi-sub">Awaiting manager action</div></div>
-    <div class="kpi-card"><div class="kpi-label">Overtime Hours (Jul)</div><div class="kpi-value">842<span>h</span></div><div class="kpi-sub">₹4.8L OT cost</div></div>
-    <div class="kpi-card violet"><div class="kpi-label">Late Arrivals MTD</div><div class="kpi-value">142</div><div class="kpi-sub">HO: 28 · Plant: 114</div></div>
-    <div class="kpi-card blue clickable" onclick="openModal('regularisation')">
-      <span class="kpi-hint">🔍</span>
-      <div class="kpi-label">Attendance Regularisation</div>
-      <div class="kpi-value">98<span>reqs (MTD)</span></div>
-      <div class="kpi-sub good">▼ 14.8% MoM — improving</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-title">Department-wise Attendance — July 2026</div></div>
-    <table class="data-table">
-      <thead><tr><th>Department</th><th class="num">Headcount</th><th class="num">Attendance %</th><th class="num">Absent Days</th><th class="num">LWP</th><th>Status</th></tr></thead>
-      <tbody>
-        <tr><td>Production (Plant)</td><td class="num">248</td><td class="num"><strong>89.1%</strong></td><td class="num">618</td><td class="num">38</td><td><span class="badge badge-red">Below Target</span></td></tr>
-        <tr><td>Quality</td><td class="num">38</td><td class="num"><strong>94.8%</strong></td><td class="num">75</td><td class="num">4</td><td><span class="badge badge-amber">On Watch</span></td></tr>
-        <tr><td>Sales (HO)</td><td class="num">146</td><td class="num"><strong>96.2%</strong></td><td class="num">105</td><td class="num">2</td><td><span class="badge badge-green">Good</span></td></tr>
-        <tr><td>Supply Chain</td><td class="num">42</td><td class="num"><strong>95.5%</strong></td><td class="num">58</td><td class="num">3</td><td><span class="badge badge-green">Good</span></td></tr>
-        <tr><td>Engineering/NPD</td><td class="num">31</td><td class="num"><strong>97.1%</strong></td><td class="num">31</td><td class="num">0</td><td><span class="badge badge-green">Excellent</span></td></tr>
-        <tr><td>Finance</td><td class="num">22</td><td class="num"><strong>96.4%</strong></td><td class="num">30</td><td class="num">1</td><td><span class="badge badge-green">Good</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ============ PERFORMANCE ============ -->
-<div id="tab-performance" class="tab-content">
-  <div class="section-header">
-    <div class="section-title">Performance <span>Management</span></div>
-    <div class="section-sub">Appraisal cycle health and KRA achievement</div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card green"><div class="kpi-label">Appraisal Completion</div><div class="kpi-value">92<span>%</span></div><div class="kpi-sub">H1 FY26-27 cycle</div></div>
-    <div class="kpi-card"><div class="kpi-label">Avg KRA Score</div><div class="kpi-value">78<span>%</span></div><div class="kpi-sub">Company-wide</div></div>
-    <div class="kpi-card red"><div class="kpi-label">PIP Count</div><div class="kpi-value">4</div><div class="kpi-sub">2 Sales · 1 Plant · 1 Corp</div></div>
-    <div class="kpi-card violet"><div class="kpi-label">Promotions (YTD)</div><div class="kpi-value">11</div><div class="kpi-sub">6 Sales · 3 Plant · 2 Corp</div></div>
-  </div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">Function-wise Avg KRA Score</div></div>
-    <table class="data-table">
-      <thead><tr><th>Function</th><th class="num">Avg KRA Score %</th><th>Status</th></tr></thead>
-      <tbody>
-        <tr><td>Sales &amp; BD</td><td class="num">74%</td><td><span class="badge badge-amber">On Watch</span></td></tr>
-        <tr><td>Production</td><td class="num">81%</td><td><span class="badge badge-green">Good</span></td></tr>
-        <tr><td>Quality</td><td class="num">85%</td><td><span class="badge badge-green">Excellent</span></td></tr>
-        <tr><td>Corporate Functions</td><td class="num">79%</td><td><span class="badge badge-green">Good</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ============ PAYROLL & COMP ============ -->
-<div id="tab-payroll" class="tab-content">
-  <div class="section-header">
-    <div class="section-title">Payroll &amp; <span>Compensation</span></div>
-    <div class="section-sub">Cost trends and comp-ratio health</div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-label">Payroll Cost (Excl Directors)</div><div class="kpi-value">₹1.42<span>Cr/mo</span></div><div class="kpi-sub">Jul 2026</div></div>
-    <div class="kpi-card amber"><div class="kpi-label">OT Cost (Jul)</div><div class="kpi-value">₹4.8<span>L</span></div><div class="kpi-sub bad">▲ 6% vs Jun</div></div>
-    <div class="kpi-card violet"><div class="kpi-label">Comp Ratio</div><div class="kpi-value">0.96</div><div class="kpi-sub">Vs internal band midpoint</div></div>
-    <div class="kpi-card green"><div class="kpi-label">Increment Budget Utilised</div><div class="kpi-value">68<span>%</span></div><div class="kpi-sub">FY26-27 cycle</div></div>
-  </div>
-</div>
-
-<!-- ============ COMPLIANCE & STATUTORY ============ -->
-<div id="tab-compliance" class="tab-content">
-  <div class="section-header">
-    <div class="section-title">Compliance &amp; <span>Statutory</span></div>
-    <div class="section-sub">PF / ESI / POSH / Factories Act status</div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card green"><div class="kpi-label">PF Compliance</div><div class="kpi-value">100<span>%</span></div><div class="kpi-sub">On-time filing</div></div>
-    <div class="kpi-card green"><div class="kpi-label">ESI Compliance</div><div class="kpi-value">100<span>%</span></div><div class="kpi-sub">On-time filing</div></div>
-    <div class="kpi-card"><div class="kpi-label">POSH Cases Open</div><div class="kpi-value">0</div><div class="kpi-sub">No pending cases</div></div>
-    <div class="kpi-card amber"><div class="kpi-label">Factories Act Audits Pending</div><div class="kpi-value">1</div><div class="kpi-sub">Scheduled — August</div></div>
-  </div>
-</div>
-
-<!-- ============ L&D / EUROVERSITY ============ -->
-<div id="tab-lnd" class="tab-content">
-  <div class="section-header">
-    <div class="section-title">L&amp;D / <span>EuroVersity</span></div>
-    <div class="section-sub">Training coverage and Dojo Centre activity</div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-label">Sales Training Hours (Jul)</div><div class="kpi-value">118<span>h</span></div><div class="kpi-sub">Q1 total: 310h</div></div>
-    <div class="kpi-card violet"><div class="kpi-label">Dojo Sessions Conducted</div><div class="kpi-value">6</div><div class="kpi-sub">This month</div></div>
-    <div class="kpi-card green"><div class="kpi-label">Training Coverage %</div><div class="kpi-value">74<span>%</span></div><div class="kpi-sub">Of eligible workforce</div></div>
-    <div class="kpi-card"><div class="kpi-label">Certification Completions</div><div class="kpi-value">22</div><div class="kpi-sub">BIS + product certs</div></div>
-  </div>
-</div>
-
-<!-- ============ ENGAGEMENT & CULTURE ============ -->
-<div id="tab-engagement" class="tab-content">
-  <div class="section-header">
-    <div class="section-title">Engagement &amp; <span>Culture</span></div>
-    <div class="section-sub">Sentiment and recognition activity</div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card violet"><div class="kpi-label">eNPS Score</div><div class="kpi-value">+32</div><div class="kpi-sub good">▲ +4 vs last survey</div></div>
-    <div class="kpi-card"><div class="kpi-label">Participation Rate (Survey)</div><div class="kpi-value">87<span>%</span></div><div class="kpi-sub">Latest pulse survey</div></div>
-    <div class="kpi-card green"><div class="kpi-label">R&amp;R Nominations (Jul)</div><div class="kpi-value">14</div><div class="kpi-sub">Across 6 categories</div></div>
-    <div class="kpi-card"><div class="kpi-label">Town Hall Attendance</div><div class="kpi-value">96<span>%</span></div><div class="kpi-sub">Last quarterly town hall</div></div>
-  </div>
-</div>
-
-<!-- ============ ALERTS & ACTIONS ============ -->
-<div id="tab-alerts" class="tab-content">
-  <div class="section-header">
-    <div class="section-title">Alerts &amp; <span>Actions</span></div>
-    <div class="section-sub">Items needing CEO / CHRO attention</div>
-  </div>
-  <div class="card">
-    <div class="alert-row"><div class="alert-dot red"></div><div class="alert-text">Healthcare Business Head role open 81 days — pipeline stalled</div><div class="alert-owner">Suman · TA</div></div>
-    <div class="alert-row"><div class="alert-dot amber"></div><div class="alert-text">"Real-Time Attendance Sync Mistakes" regularisation bucket not falling — review flagged</div><div class="alert-owner">Ruchika · CHRO</div></div>
-    <div class="alert-row"><div class="alert-dot amber"></div><div class="alert-text">Plant absenteeism at 11.2%, Mon/Fri pattern — needs root-cause review</div><div class="alert-owner">Plant HR</div></div>
-    <div class="alert-row"><div class="alert-dot green"></div><div class="alert-text">Factories Act audit scheduled for August — prep checklist in motion</div><div class="alert-owner">Compliance</div></div>
-    <div class="alert-row"><div class="alert-dot red"></div><div class="alert-text">4 employees on PIP — 2 in Sales approaching cycle-end review</div><div class="alert-owner">HODs</div></div>
-  </div>
-</div>
-
-<!-- ============ MODAL ============ -->
-<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <div class="modal-header">
-      <div><h2 id="modalTitle"></h2><p id="modalSub"></p></div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="period-toggle">
-        <span class="period-toggle-label">View:</span>
-        <button class="period-btn" data-period="weekly" onclick="setPeriod('weekly')">Weekly</button>
-        <button class="period-btn active" data-period="monthly" onclick="setPeriod('monthly')">Monthly</button>
-        <button class="period-btn" data-period="cfy" onclick="setPeriod('cfy')">CFY</button>
+      <div>
+        <div class="brand-name">EURONICS</div>
+        <div class="brand-sub">HR Command Centre</div>
       </div>
-      <div class="chart-wrap"><canvas id="modalChart"></canvas></div>
-      <div id="modalTables"></div>
-      <div class="modal-note" id="modalNote"></div>
     </div>
-  </div>
+
+
+    <nav class="nav">
+
+      <button class="nav-item active" data-page="overview">
+        Overview
+      </button>
+
+      <button class="nav-item" data-page="employees">
+        Employee CRM
+      </button>
+
+      <button class="nav-item" data-page="recruitment">
+        Recruitment
+      </button>
+
+      <button class="nav-item" data-page="attendance">
+        Attendance
+      </button>
+
+      <button class="nav-item" data-page="performance">
+        Performance
+      </button>
+
+      <button class="nav-item" data-page="payroll">
+        Payroll
+      </button>
+
+      <button class="nav-item" data-page="learning">
+        L&D / EuroVersity
+      </button>
+
+      <button class="nav-item" data-page="engagement">
+        Engagement
+      </button>
+
+      <button class="nav-item" data-page="compliance">
+        Compliance
+      </button>
+
+      <button class="nav-item" data-page="alerts">
+        Alerts & Actions
+      </button>
+
+    </nav>
+
+
+    <div class="sidebar-footer">
+      <div class="live-dot"></div>
+      <span>Prototype · Dummy Data</span>
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+      <div>
+        <h1 id="pageTitle">Executive Overview</h1>
+        <p id="pageSub">CEO & CHRO command view</p>
+      </div>
+
+
+      <div class="top-actions">
+
+        <div class="search-wrap">
+          <input
+            id="globalSearch"
+            type="search"
+            placeholder="Search employee, role, manager..."
+          />
+        </div>
+
+        <div class="date-chip">
+          August 2026
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- FILTER BAR -->
+
+    <section class="filters">
+
+      <select id="filterLocation">
+        <option value="all">All Locations</option>
+        <option>Gurugram</option>
+        <option>Bengaluru</option>
+        <option>Hyderabad</option>
+        <option>Ahmedabad</option>
+        <option>Mumbai</option>
+      </select>
+
+
+      <select id="filterDepartment">
+        <option value="all">All Departments</option>
+        <option>Sales & BD</option>
+        <option>Production</option>
+        <option>Quality</option>
+        <option>Supply Chain</option>
+        <option>Engineering/NPD</option>
+        <option>Finance</option>
+        <option>HR & Admin</option>
+      </select>
+
+
+      <select id="filterManager">
+        <option value="all">All Managers</option>
+        <option>Abhilash Pandey</option>
+        <option>Kartick</option>
+        <option>Vikram</option>
+        <option>Lalit</option>
+        <option>Pradip</option>
+      </select>
+
+
+      <select id="filterStatus">
+        <option value="all">All Statuses</option>
+        <option>Green</option>
+        <option>Yellow</option>
+        <option>Red</option>
+        <option>PIP</option>
+      </select>
+
+
+      <button id="resetFilters" class="btn btn-light">
+        Reset
+      </button>
+
+    </section>
+
+
+    <!-- OVERVIEW PAGE -->
+
+    <section id="overview" class="page active">
+
+      <div class="attention-strip">
+
+        <div>
+
+          <div class="eyebrow">
+            What Needs Attention
+          </div>
+
+          <div class="attention-text">
+            3 critical hiring roles, 4 PIP cases, and Plant absenteeism above threshold.
+          </div>
+
+        </div>
+
+
+        <button
+          class="btn btn-primary"
+          data-page-jump="alerts"
+        >
+          Open Action Centre
+        </button>
+
+      </div>
+
+
+      <div
+        class="kpi-grid"
+        id="overviewKpis"
+      ></div>
+
+
+      <div class="grid-2">
+
+        <div class="panel">
+
+          <div class="panel-head">
+
+            <div>
+              <h3>Headcount Trend</h3>
+              <p>Current FY monthly movement</p>
+            </div>
+
+          </div>
+
+          <canvas id="headcountChart"></canvas>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panel-head">
+
+            <div>
+              <h3>Attrition Trend</h3>
+              <p>Rolling 12M by month</p>
+            </div>
+
+          </div>
+
+          <canvas id="attritionChart"></canvas>
+
+        </div>
+
+      </div>
+
+
+      <div class="grid-2">
+
+        <div class="panel">
+
+          <div class="panel-head">
+
+            <div>
+              <h3>Department Health</h3>
+              <p>Attendance, KRA and risk view</p>
+            </div>
+
+          </div>
+
+          <div id="departmentHealth"></div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panel-head">
+
+            <div>
+              <h3>Priority Alerts</h3>
+              <p>Items requiring ownership</p>
+            </div>
+
+            <button
+              class="link-btn"
+              data-page-jump="alerts"
+            >
+              View all
+            </button>
+
+          </div>
+
+          <div id="priorityAlerts"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- EMPLOYEE CRM -->
+
+    <section id="employees" class="page">
+
+      <div class="section-toolbar">
+
+        <div>
+          <h2>Employee CRM</h2>
+          <p>Searchable 360° employee operating view</p>
+        </div>
+
+        <button class="btn btn-primary">
+          + Add Employee
+        </button>
+
+      </div>
+
+
+      <div class="panel">
+
+        <div class="table-tools">
+
+          <input
+            id="employeeSearch"
+            type="search"
+            placeholder="Search employee..."
+          />
+
+          <div class="table-meta">
+            <span id="employeeCount">0</span> employees
+          </div>
+
+        </div>
+
+
+        <div class="table-scroll">
+
+          <table class="crm-table">
+
+            <thead>
+
+              <tr>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Manager</th>
+                <th>Location</th>
+                <th>Attendance</th>
+                <th>KRA</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+
+            </thead>
+
+            <tbody id="employeeTableBody"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RECRUITMENT -->
+
+    <section id="recruitment" class="page">
+
+      <div class="section-toolbar">
+
+        <div>
+          <h2>Recruitment Pipeline</h2>
+          <p>CRM-style requisition funnel</p>
+        </div>
+
+        <button class="btn btn-primary">
+          + New Requisition
+        </button>
+
+      </div>
+
+
+      <div
+        id="recruitmentKpis"
+        class="kpi-grid"
+      ></div>
+
+
+      <div
+        class="pipeline"
+        id="recruitmentPipeline"
+      ></div>
+
+    </section>
+
+
+    <!-- ATTENDANCE -->
+
+    <section id="attendance" class="page">
+
+      <div class="section-toolbar">
+
+        <div>
+          <h2>Attendance & Leave</h2>
+          <p>Attendance health, regularisation and leave actions</p>
+        </div>
+
+      </div>
+
+
+      <div
+        id="attendanceKpis"
+        class="kpi-grid"
+      ></div>
+
+
+      <div class="grid-2">
+
+        <div class="panel">
+          <canvas id="attendanceChart"></canvas>
+        </div>
+
+        <div class="panel">
+          <div id="attendanceIssues"></div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PERFORMANCE -->
+
+    <section id="performance" class="page">
+
+      <div class="section-toolbar">
+
+        <div>
+          <h2>Performance Management</h2>
+          <p>Green / Yellow / Red / PIP workforce view</p>
+        </div>
+
+      </div>
+
+
+      <div
+        id="performanceKpis"
+        class="kpi-grid"
+      ></div>
+
+
+      <div class="panel">
+        <div id="performanceMatrix"></div>
+      </div>
+
+    </section>
+
+
+    <!-- PAYROLL -->
+
+    <section id="payroll" class="page">
+
+      <div class="section-toolbar">
+
+        <div>
+          <h2>Payroll & Compensation</h2>
+          <p>Monthly cost, OT and comp-ratio health</p>
+        </div>
+
+      </div>
+
+
+      <div
+        id="payrollKpis"
+        class="kpi-grid"
+      ></div>
+
+
+      <div class="panel">
+        <canvas id="payrollChart"></canvas>
+      </div>
+
+    </section>
+
+
+    <!-- LEARNING -->
+
+    <section id="learning" class="page">
+
+      <div class="section-toolbar">
+
+        <div>
+          <h2>L&D / EuroVersity</h2>
+          <p>Training coverage, Dojo activity and certification</p>
+        </div>
+
+      </div>
+
+
+      <div
+        id="learningKpis"
+        class="kpi-grid"
+      ></div>
+
+
+      <div class="panel">
+        <div id="learningTable"></div>
+      </div>
+
+    </section>
+
+
+    <!-- ENGAGEMENT -->
+
+    <section id="engagement" class="page">
+
+      <div class="section-toolbar">
+
+        <div>
+          <h2>Engagement & Culture</h2>
+          <p>eNPS, participation and recognition</p>
+        </div>
+
+      </div>
+
+
+      <div
+        id="engagementKpis"
+        class="kpi-grid"
+      ></div>
+
+
+      <div class="panel">
+        <canvas id="engagementChart"></canvas>
+      </div>
+
+    </section>
+
+
+    <!-- COMPLIANCE -->
+
+    <section id="compliance" class="page">
+
+      <div class="section-toolbar">
+
+        <div>
+          <h2>Compliance & Statutory</h2>
+          <p>PF, ESI, POSH and audit readiness</p>
+        </div>
+
+      </div>
+
+
+      <div
+        id="complianceKpis"
+        class="kpi-grid"
+      ></div>
+
+
+      <div class="panel">
+        <div id="complianceList"></div>
+      </div>
+
+    </section>
+
+
+    <!-- ALERTS -->
+
+    <section id="alerts" class="page">
+
+      <div class="section-toolbar">
+
+        <div>
+          <h2>Alerts & Action Centre</h2>
+          <p>Owners, due dates, severity and action status</p>
+        </div>
+
+        <button class="btn btn-primary">
+          + Add Action
+        </button>
+
+      </div>
+
+
+      <div class="panel">
+
+        <div class="table-scroll">
+
+          <table class="crm-table">
+
+            <thead>
+
+              <tr>
+                <th>Priority</th>
+                <th>Action</th>
+                <th>Owner</th>
+                <th>Due</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+
+            </thead>
+
+            <tbody id="alertTableBody"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
 </div>
 
+
+<!-- EMPLOYEE DRAWER -->
+
+<div
+  class="drawer-overlay"
+  id="drawerOverlay"
+></div>
+
+
+<aside
+  class="drawer"
+  id="employeeDrawer"
+>
+
+  <div class="drawer-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Employee 360°
+      </div>
+
+      <h2 id="drawerName">
+        Employee
+      </h2>
+
+      <p id="drawerRole"></p>
+
+    </div>
+
+
+    <button
+      class="icon-btn"
+      id="drawerClose"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div
+    class="drawer-body"
+    id="drawerBody"
+  ></div>
+
+</aside>
+
+
+<script src="js/data.js"></script>
+<script src="js/charts.js"></script>
 <script src="js/app.js"></script>
+
 </body>
 </html>
